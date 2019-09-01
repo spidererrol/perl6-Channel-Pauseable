@@ -8,7 +8,7 @@ say "WARNING: This will never end!";
 
 my $channel = Channel::Pauseable.new;
 
-my $supply = Supply.interval(1);
+my $supply = Supply.interval(1).head(10);
 
 $channel.tap($supply);
 
