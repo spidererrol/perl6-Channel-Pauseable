@@ -68,10 +68,6 @@ Returns a live Supply that is supplied by this channel.
 
 =end pod
 
-sub debug($what) {
-    #say $*THREAD.id ~ ": $what";
-}
-
 class Channel::Pauseable:ver<1.0.0>:auth<github:spidererrol> is Channel does Iterator does Iterable does Tappable {
     has Bool $.is-paused;
     has Promise $!unpaused;
@@ -93,16 +89,10 @@ class Channel::Pauseable:ver<1.0.0>:auth<github:spidererrol> is Channel does Ite
         $!unpaused.keep;
     }
 
-    method send(Channel::Pauseable:D: \item) {
-        debug "S:" ~ item;
-        nextsame;
-    }
-
     method receive(Channel::Pauseable:D:) {
         $ = $!unpaused.result if $!is-paused;
         my $ret = callsame;
         $ = $!unpaused.result if $!is-paused;
-        debug "R:$ret";
         return $ret;
     }
 
@@ -124,23 +114,20 @@ class Channel::Pauseable:ver<1.0.0>:auth<github:spidererrol> is Channel does Ite
     }
 
     method close() {
-        debug "close";
         nextsame;
     }
 
     method !untap(Tap:D $untap) {
         $!source-taps{$untap}--;
-        debug "untap-source($untap)=" ~ $!source-taps.elems;
         self.close if $!source-taps.elems == 0;
     }
 
     method !source-tap($totap) {
         my $t;
-        $totap.tap: -> $item { debug "==>$item"; self.send($item) }, done=>{ $t.close() }, tap=> -> $source-tap {
+        $totap.tap: -> $item { self.send($item) }, done=>{ $t.close() }, tap=> -> $source-tap {
             $t = Tap.new({ $source-tap.close(); self!untap($t) });
             $!source-taps{$t}++;
         };
-        debug "tap-source($t)";
         $t
     }
     multi method tap(Tappable:D $totap) {
@@ -169,7 +156,6 @@ class Channel::Pauseable:ver<1.0.0>:auth<github:spidererrol> is Channel does Ite
         start {
             until self.closed {
                 my $thing = self.receive;
-                debug "<==$thing";
                 $supplier.emit($thing);
                 CATCH {
                     when X::Channel::ReceiveOnClosed {}
