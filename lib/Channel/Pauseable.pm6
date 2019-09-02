@@ -4,7 +4,7 @@ use v6.c;
 
 =head1 NAME
 
-Channel::Pauseable - blah blah blah
+Channel::Pauseable - A Channel which can be paused and more
 
 =head1 SYNOPSIS
 
@@ -19,6 +19,8 @@ $channel.send: ...;
 $channel.pause;
 $channel.resume;
 
+say $channel.recieve;
+
 =end code
 
 =head1 DESCRIPTION
@@ -26,6 +28,10 @@ $channel.resume;
 Channel::Pauseable is a L<Channel> which can be paused and resumed.
 
 It also offers the ability to automatically collect from L<Supply>s or L<Tappable>s. And can be tapped much like a L<Supply>.
+
+=head1 EXAMPLES
+
+There are various usage examples in the "examples" directory.
 
 =head1 METHODS
 

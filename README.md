@@ -1,7 +1,7 @@
 NAME
 ====
 
-Channel::Pauseable - blah blah blah
+Channel::Pauseable - A Channel which can be paused and more
 
 SYNOPSIS
 ========
@@ -15,6 +15,8 @@ $channel.send: ...;
 
 $channel.pause;
 $channel.resume;
+
+say $channel.recieve;
 ```
 
 DESCRIPTION
@@ -23,6 +25,11 @@ DESCRIPTION
 Channel::Pauseable is a [Channel](Channel) which can be paused and resumed.
 
 It also offers the ability to automatically collect from [Supply](Supply)s or [Tappable](Tappable)s. And can be tapped much like a [Supply](Supply).
+
+EXAMPLES
+========
+
+There are various usage examples in the "examples" directory.
 
 METHODS
 =======
