@@ -18,3 +18,5 @@ my $b = $channel.tap: -> $i { say "B:$i" };
 Promise.in(7).then( {$b.close });
 
 await $supply;
+
+# vim:nospell

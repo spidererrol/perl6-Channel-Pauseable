@@ -1,7 +1,6 @@
 #!/usr/bin/env perl6
 
 use v6;
-use lib 'lib';
 use Channel::Pauseable;
 
 my $channel = Channel::Pauseable.new;
@@ -16,3 +15,4 @@ for $channel.list -> $r {
     say $r;
 }
 
+# vim:nospell

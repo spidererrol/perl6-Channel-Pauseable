@@ -1,7 +1,6 @@
 #!/usr/bin/env perl6
 
 use v6;
-use lib 'lib';
 use Channel::Pauseable;
 
 my $channel = Channel::Pauseable.new;
@@ -22,3 +21,5 @@ my $b = $channel.tap: -> $i { say "B:$i" };
 Promise.in(5).then( {$b.close });
 
 await $end;
+
+# vim:nospell
