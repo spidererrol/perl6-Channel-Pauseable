@@ -5,7 +5,7 @@
   ],
   "build-depends" : [ ],
   "depends" : [ ],
-  "description" : "blah blah blah",
+  "description" : "A Channel which can be paused and more",
   "license" : "Artistic-2.0",
   "name" : "Channel::Pauseable",
   "perl" : "6.c",
@@ -13,7 +13,7 @@
     "Channel::Pauseable" : "lib/Channel/Pauseable.pm6"
   },
   "resources" : [ ],
-  "source-url" : "/home/tim/Dropbox/GitRepos/perl6-Channel-Pauseable.git/",
+  "source-url" : "https://github.com/spidererrol/perl6-Channel-Pauseable",
   "tags" : [ ],
   "test-depends" : [ ],
   "version" : "1.0.0"
